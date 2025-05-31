@@ -4,9 +4,20 @@
 #include "password.h"
 
 int main(){
-	printf("Password Manager started. \n");
+	printf("Simple Password Manager \n");
+	int choice;
+	while(1) {
+		printf("1. Add Password \n2. List Passwords \n3. Update Passwords \n4. Delete Passwords \n5. Exit\nChoice: ");
+		scanf("%d", &choice);
+		getchar();
 
-	add_password();
-	
-	return 0;
+		switch(choice) {
+			case 1: add_password();break;
+			case 2: read_password();break;
+			case 3: return 0;
+			case 4: return 0;
+			case 5: return 0;
+			default: printf("Invalid Choice\n");
+		}
+	}
 }

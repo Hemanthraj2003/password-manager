@@ -22,15 +22,36 @@ void add_password(){
 	if(file){
 		fprintf(file, "%s %s %s\n",entry.services, entry.username, entry.password);
 		fclose(file);
-		printf("Saved\n");
+		printf("\n[Saved Password Successfully]\n");
+        	printf("Service: %s", entry.services);
+       		printf("Username: %s", entry.username);
+	        printf("Password: %s", entry.password);
+
 	} else {
 		perror("Error Opening file");
 	}
 
-	// currently just printing the values
-	printf("\n[Saved Password Successfully]\n");
-	printf("Service: %s", entry.services);
-	printf("Username: %s", entry.username);
-	printf("Password: %s", entry.password);
 }
 
+void read_password() {
+    FILE *file = fopen(FILE_NAME, "r");  // Open in read mode
+    if (!file) {
+        perror("Error opening file");
+        return;
+    }
+
+    passwordEntry entry;
+
+    printf("\n[Saved Credentials]\n");
+    printf("-------------------------\n");
+
+    // Keep reading sets of 3 strings (space-separated)
+    while (fscanf(file, "%s %s %s", entry.services, entry.username, entry.password) == 3) {
+        printf("Service:  %s\n", entry.services);
+        printf("Username: %s\n", entry.username);
+        printf("Password: %s\n", entry.password);
+        printf("-------------------------\n");
+    }
+
+    fclose(file);
+}
