@@ -2,6 +2,8 @@
 #include <string.h>
 #include "password.h" // includes the code from the password.h
 
+
+// adds password in to password.txt file
 void add_password(){
 	passwordEntry entry;
 
@@ -33,6 +35,8 @@ void add_password(){
 
 }
 
+
+// list all the passwords that are been saved in the password.txt file
 void read_password() {
     FILE *file = fopen(FILE_NAME, "r");  // Open in read mode
     if (!file) {
@@ -55,3 +59,5 @@ void read_password() {
 
     fclose(file);
 }
+
+
