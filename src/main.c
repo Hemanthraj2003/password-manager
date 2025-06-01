@@ -7,7 +7,7 @@ int main(){
 	printf("Simple Password Manager \n");
 	int choice;
 	while(1) {
-		printf("1. Add Password \n2. List Passwords \n3. Update Passwords \n4. Delete Passwords \n5. Exit\nChoice: ");
+		printf("\n1. Add Password \n2. List Passwords \n3. Update Passwords \n4. Delete Passwords \n5. Exit\nChoice: ");
 		scanf("%d", &choice);
 		getchar();
 
@@ -15,7 +15,7 @@ int main(){
 			case 1: add_password();break;
 			case 2: read_password();break;
 			case 3: update_password();break;
-			case 4: return 0;
+			case 4: delete_password();break;
 			case 5: return 0;
 			default: printf("Invalid Choice\n");
 		}

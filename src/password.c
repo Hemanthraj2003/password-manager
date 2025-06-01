@@ -130,3 +130,50 @@ void update_password(){
 		printf("Did not find any matching service for the searched service - '%s'\n", target_service);
 	}
 }
+
+
+// function to implement delete function that deletes the passwords from the password.txt
+void delete_password(){
+	FILE *file = fopen(FILE_NAME,"r" );
+	FILE *temp = fopen("temp.txt", "w");
+
+	// checking if the files are properly opened
+	if(!file || !temp){
+		perror("\nUnable to open password.txt or temp.txt\n");
+		return;
+	}
+
+	// creating object and nessary variables
+	passwordEntry entry;
+	char target_service[MAX_LEN]; // use to store the search term
+	int deleted = 0;
+	
+	printf("Enter the service name of which u want to delete: ");
+	fgets(target_service, MAX_LEN, stdin);
+	target_service[strcspn(target_service, "\n")] = 0;
+
+
+	while(fscanf(file, "%s %s %s", entry.services, entry.username, entry.password)== 3){
+		if(strcmp(target_service, entry.services) == 0) {
+			deleted = 1;
+			continue;
+		}
+
+		fprintf(temp, "%s   %s   %s\n", entry.services, entry.username, entry.password);
+	}
+
+	// file clean ups
+	fclose(file);
+	fclose(temp);
+
+	// removeing the outdated file
+	remove(FILE_NAME);
+	// renameing the new temp file to FILE_NAME
+	rename("temp.txt", FILE_NAME);
+
+	if(deleted){
+		printf("\nDeleted %s service successfully\n", target_service);
+	} else {
+		printf("\n%s named service Not Found!!\n", target_service);
+	}
+}
