@@ -14,7 +14,7 @@ int main(){
 		switch(choice) {
 			case 1: add_password();break;
 			case 2: read_password();break;
-			case 3: return 0;
+			case 3: update_password();break;
 			case 4: return 0;
 			case 5: return 0;
 			default: printf("Invalid Choice\n");
